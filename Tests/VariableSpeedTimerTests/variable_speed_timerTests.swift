@@ -1,5 +1,5 @@
 import XCTest
-@testable import variable_speed_timer
+@testable import VariableSpeedTimer
 
 final class variable_speed_timerTests: XCTestCase {
     func testExample() throws {
