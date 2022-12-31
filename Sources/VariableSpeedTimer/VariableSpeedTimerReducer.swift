@@ -10,18 +10,20 @@ import ComposableArchitecture
 
 
 public struct VariableSpeedTimerReducer: ReducerProtocol {
-    
+    public init(){
+        
+    }
     public class TimerSpeedParameter{
-        static let timerSpeedMax : Double = 100.0
+        public static let timerSpeedMax : Double = 100.0
 #if SNAPSHOT
-        static let timerSpeedInitValue : Double = 70.0
+        public static let timerSpeedInitValue : Double = 70.0
 #else
-        static let timerSpeedInitValue : Double = 15.0
+        public static let timerSpeedInitValue : Double = 15.0
 #endif
-        static let timerTotalTicksMin = 1.0
-        static let timerTotalTicksMax = 100.0
+        public static let timerTotalTicksMin = 1.0
+        public static let timerTotalTicksMax = 100.0
 
-        static func getTimerInterval(timerSpeed: Double)->Double{
+        public static func getTimerInterval(timerSpeed: Double)->Double{
             return (TimerSpeedParameter.timerSpeedMax + 5 - timerSpeed) * 10
         }
     }
@@ -29,13 +31,22 @@ public struct VariableSpeedTimerReducer: ReducerProtocol {
     private enum TimerID {}
     
     public struct State: Equatable{
-        var currentTick : Double = 0.0
-        var totalTicks : Double = 50.0
-        var isTimerOn = false
-        var timerSpeed: Double = TimerSpeedParameter.timerSpeedInitValue
+        public var currentTick : Double = 0.0
+        public var totalTicks : Double = 50.0
+        public var isTimerOn = false
+        public var timerSpeed: Double = TimerSpeedParameter.timerSpeedInitValue
         
-        var t : Double { currentTick / totalTicks  }
+        public var t : Double { currentTick / totalTicks  }
         
+        public init(currentTick: Double = 0.0,
+                    totalTicks: Double = 50.0,
+                    isTimerOn: Bool = false,
+                    timerSpeed: Double = TimerSpeedParameter.timerSpeedInitValue) {
+            self.currentTick = currentTick
+            self.totalTicks = totalTicks
+            self.isTimerOn = isTimerOn
+            self.timerSpeed = timerSpeed
+        }
     }
     public enum Action : Equatable{
         case stepForward
