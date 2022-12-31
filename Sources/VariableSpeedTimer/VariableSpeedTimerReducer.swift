@@ -9,9 +9,9 @@ import Foundation
 import ComposableArchitecture
 
 
-struct VariableSpeedTimerReducer: ReducerProtocol {
+public struct VariableSpeedTimerReducer: ReducerProtocol {
     
-    class TimerSpeedParameter{
+    public class TimerSpeedParameter{
         static let timerSpeedMax : Double = 100.0
 #if SNAPSHOT
         static let timerSpeedInitValue : Double = 70.0
@@ -28,7 +28,7 @@ struct VariableSpeedTimerReducer: ReducerProtocol {
     //private var timerSpeedParameter = TimerSpeedParameter()
     private enum TimerID {}
     
-    struct State: Equatable{
+    public struct State: Equatable{
         var currentTick : Double = 0.0
         var totalTicks : Double = 50.0
         var isTimerOn = false
@@ -37,7 +37,7 @@ struct VariableSpeedTimerReducer: ReducerProtocol {
         var t : Double { currentTick / totalTicks  }
         
     }
-    enum Action : Equatable{
+    public enum Action : Equatable{
         case stepForward
         case startTask
         case toggleTimer(Bool)
@@ -47,8 +47,8 @@ struct VariableSpeedTimerReducer: ReducerProtocol {
         case restartTimer
         
     }
-    struct DebounceID : Hashable{}
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+    private struct DebounceID : Hashable{}
+    public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action{
         case .stepForward:
             if !state.isTimerOn{
