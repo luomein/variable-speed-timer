@@ -16,7 +16,7 @@ public struct VariableSpeedTimerReducer: ReducerProtocol {
     public class TimerSpeedParameter{
         public static let timerSpeedMax : Double = 100.0
 #if SNAPSHOT
-        public static let timerSpeedInitValue : Double = 70.0
+        public static let timerSpeedInitValue : Double = 90.0
 #else
         public static let timerSpeedInitValue : Double = 15.0
 #endif
